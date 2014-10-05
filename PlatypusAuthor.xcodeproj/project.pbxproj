@@ -280,14 +280,13 @@
 		64AF14EC19E1B77E00F4A04A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				64AF14F419E1B77E00F4A04A /* OutlineView */,
 				64AF14ED19E1B77E00F4A04A /* FileBrowser.xib */,
 				64AF14EE19E1B77E00F4A04A /* FileBrowserController.h */,
 				64AF14EF19E1B77E00F4A04A /* FileBrowserController.m */,
-				64AF14F019E1B77E00F4A04A /* ManualServerWindow.h */,
-				64AF14F119E1B77E00F4A04A /* ManualServerWindow.m */,
-				64AF14F219E1B77E00F4A04A /* ManualServerWindow.xib */,
-				64AF14F319E1B77E00F4A04A /* ManualServerWindowDelegate.h */,
-				64AF14F419E1B77E00F4A04A /* OutlineView */,
+				64AF150119E1B77E00F4A04A /* TextView.xib */,
+				64AF150219E1B77E00F4A04A /* TextViewController.h */,
+				64AF150319E1B77E00F4A04A /* TextViewController.m */,
 				64AF14FA19E1B77E00F4A04A /* PreviewWebView.xib */,
 				64AF14FB19E1B77E00F4A04A /* PreviewWebViewController.h */,
 				64AF14FC19E1B77E00F4A04A /* PreviewWebViewController.m */,
@@ -295,9 +294,10 @@
 				64AF14FE19E1B77E00F4A04A /* TargetsWindowController.h */,
 				64AF14FF19E1B77E00F4A04A /* TargetsWindowController.m */,
 				64AF150019E1B77E00F4A04A /* TargetsWindowControllerDelegate.h */,
-				64AF150119E1B77E00F4A04A /* TextView.xib */,
-				64AF150219E1B77E00F4A04A /* TextViewController.h */,
-				64AF150319E1B77E00F4A04A /* TextViewController.m */,
+				64AF14F219E1B77E00F4A04A /* ManualServerWindow.xib */,
+				64AF14F019E1B77E00F4A04A /* ManualServerWindow.h */,
+				64AF14F119E1B77E00F4A04A /* ManualServerWindow.m */,
+				64AF14F319E1B77E00F4A04A /* ManualServerWindowDelegate.h */,
 			);
 			path = Views;
 			sourceTree = "<group>";

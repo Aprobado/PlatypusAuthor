@@ -16,12 +16,13 @@ NSUInteger const defaultPort = 40905;
 
 @property ReceiveServer *server;
 @property (weak) IBOutlet NSTextField *textField;
+@property (strong) IBOutlet NSPanel *panel;
 
 @end
 
 @implementation ManualServerWindow
 
-@synthesize server, textField;
+@synthesize server, panel, textField;
 @synthesize delegate;
 
 - (instancetype)initWithWindow:(NSWindow *)window
@@ -37,6 +38,7 @@ NSUInteger const defaultPort = 40905;
 {
     [super windowDidLoad];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [panel setFloatingPanel:NO];
     
     server = [[ReceiveServer alloc] init];
     server.delegate = self;

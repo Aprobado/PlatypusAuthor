@@ -120,6 +120,8 @@
     for (NSString *file in content) {
         // ignore invisible files
         if ([file characterAtIndex:0] == [@"." characterAtIndex:0]) continue;
+        // ignore automat directory
+        if ([file isEqualTo:@"automat"]) continue;
         
         NSString *fileRelativePath = [folderPath stringByAppendingPathComponent:file];
         NSString *fileAbsolutePath = [absolutePath stringByAppendingPathComponent:file];
@@ -149,14 +151,14 @@
 
 - (NSArray *)getArrayOfFiles {
     NSMutableArray* array = [[NSMutableArray alloc] init];
-    // folder path is relative to htmlFolderPath // not anymore
+    // folder path is relative to the project folder
     [self addFilesInFolderPath:@"" ToArray:array];
     return array;
 }
 
 - (NSData *)getArrayOfFilesAsNSData {
     NSArray *array = [self getArrayOfFiles];
-    
+    NSLog(@"files in project: %@", array);
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:array];
     
     return data;

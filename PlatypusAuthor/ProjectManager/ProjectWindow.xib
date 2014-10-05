@@ -22,7 +22,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="C221D0C4-A4B5-4281-9939-0C4E258DADF8" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="Isw-0F-asR">
+            <toolbar key="toolbar" implicitIdentifier="C221D0C4-A4B5-4281-9939-0C4E258DADF8" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="small" id="Isw-0F-asR">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="0CFD6589-35E0-4C63-9A06-99915D17B66E" label="Upload to devices" paletteLabel="UploadToDevice" tag="-1" image="NSGoRightTemplate" autovalidates="NO" id="cgm-wd-2Qk">
                         <connections>
@@ -86,12 +86,18 @@
                             <action selector="gitCommit:" target="-2" id="up8-Oe-TCw"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="119185FE-2DD5-4C21-AB65-5FBE3F989261" label="Show-Hide Preview" paletteLabel="Show-Hide Preview" tag="-1" image="NSQuickLookTemplate" id="I41-eR-vi8">
+                        <connections>
+                            <action selector="showOrHidePreview:" target="-2" id="4OI-lI-4N9"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="TtU-b0-Kth"/>
                     <toolbarItem reference="aZM-JP-J2H"/>
                     <toolbarItem reference="DLi-Qe-lvS"/>
                     <toolbarItem reference="ZOk-rf-vLc"/>
+                    <toolbarItem reference="I41-eR-vi8"/>
                 </defaultToolbarItems>
             </toolbar>
             <connections>
@@ -122,6 +128,7 @@
     <resources>
         <image name="Git-Icon-Black" width="383" height="383"/>
         <image name="NSGoRightTemplate" width="9" height="9"/>
+        <image name="NSQuickLookTemplate" width="21" height="16"/>
         <image name="NSRefreshTemplate" width="10" height="12"/>
     </resources>
 </document>

@@ -20,6 +20,7 @@
 
 @property TextViewController *textViewController;
 @property PreviewWebViewController *webViewController;
+@property CGFloat webViewLastPosition;
 @property (nonatomic)  Project *project;
 
 @end
@@ -28,6 +29,7 @@
 
 @synthesize delegate;
 @synthesize fileBrowserController, textViewController, webViewController, project, splitView;
+@synthesize webViewLastPosition;
 
 - (instancetype)initWithWindow:(NSWindow *)window
 {
@@ -45,6 +47,7 @@
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didBecomeKeyWindow) name:NSWindowDidBecomeKeyNotification object:nil];
+    
 }
 
 - (NSString *)getProjectNameAtPath:(NSString *)projectPath {
@@ -112,6 +115,8 @@
     // assign splitView to the project window
     
     [splitView adjustSubviews];
+    splitView.delegate = self;
+    //[splitView setHoldingPriority:NSLayoutPriorityDefaultHigh forSubviewAtIndex:0];
     [self.window setContentView:splitView];
     [self.window setTitle:[NSString stringWithFormat:@"Project - %@", projectName]];
     
@@ -223,6 +228,22 @@
     }
 }
 
+- (IBAction)showOrHidePreview:(id)sender {
+    if ([splitView isSubviewCollapsed:[webViewController view]]) {
+        // set divider in the center
+        CGFloat max = [splitView maxPossiblePositionOfDividerAtIndex:1];
+        CGFloat min = [splitView minPossiblePositionOfDividerAtIndex:1];
+        CGFloat newPos = min+((max-min)/2);
+        [splitView setPosition:newPos ofDividerAtIndex:1];
+    }
+    else {
+        // set divider at the max position (collapsing it)
+        webViewLastPosition = [[webViewController view] frame].size.width;
+        [splitView setPosition:[splitView maxPossiblePositionOfDividerAtIndex:1]
+              ofDividerAtIndex:1];
+    }
+}
+
 #pragma mark * NSWindowDelegate implementation
 
 - (void)windowWillClose:(NSNotification *)notification {
@@ -293,6 +314,30 @@
 
 - (void)didBecomeKeyWindow {
     [[fileBrowserController outlineView] reloadData];
+}
+
+#pragma mark * NSSplitView Delegate implementation
+
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMin ofSubviewAt:(NSInteger)dividerIndex {
+    return proposedMin + 200;
+}
+
+- (CGFloat)splitView:(NSSplitView *)splitView constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)dividerIndex {
+    return proposedMax - 200;
+}
+
+- (BOOL)splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
+    if (subview == [webViewController view]) return YES;
+    else if (subview == [textViewController view]) return YES;
+    else if (subview == [fileBrowserController view]) return NO;
+    else return NO;
+}
+
+- (BOOL)splitView:(NSSplitView *)splitView shouldAdjustSizeOfSubview:(NSView *)subview {
+    if (subview == [webViewController view]) return YES;
+    else if (subview == [textViewController view]) return YES;
+    else if (subview == [fileBrowserController view]) return NO;
+    else return NO;
 }
 
 @end

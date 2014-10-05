@@ -11,7 +11,7 @@
 #import "AuthorService.h"
 #import "FileBrowserController.h"
 
-@interface ProjectWindowController : NSWindowController <NSWindowDelegate, NSOutlineViewDelegate, NSTableViewDelegate> {
+@interface ProjectWindowController : NSWindowController <NSWindowDelegate, NSOutlineViewDelegate, NSTableViewDelegate, NSSplitViewDelegate> {
     id<ProjectWindowDelegate> delegate;
 }
 
