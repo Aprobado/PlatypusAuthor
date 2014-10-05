@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TextViewController">
+            <connections>
+                <outlet property="textView" destination="1Mv-mx-l0q" id="6zz-rd-TGP"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="497" height="486"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAO-qb-1u1">
+                    <rect key="frame" x="0.0" y="0.0" width="497" height="486"/>
+                    <clipView key="contentView" id="bYY-Bu-LA3">
+                        <rect key="frame" x="0.0" y="0.0" width="497" height="486"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView importsGraphics="NO" richText="NO" verticallyResizable="NO" findStyle="panel" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" allowsNonContiguousLayout="YES" id="1Mv-mx-l0q">
+                                <rect key="frame" x="0.0" y="0.0" width="497" height="846"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="minSize" width="497" height="486"/>
+                                <size key="maxSize" width="508" height="10000000"/>
+                                <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="minSize" width="497" height="486"/>
+                                <size key="maxSize" width="508" height="10000000"/>
+                                <connections>
+                                    <outlet property="delegate" destination="-2" id="9pd-Vq-S6M"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.13381029211956519" green="0.13381029211956519" blue="0.13381029211956519" alpha="1" colorSpace="calibratedRGB"/>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="auW-Il-a9a">
+                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="Kle-6e-sKG">
+                        <rect key="frame" x="481" y="0.0" width="16" height="486"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="NAO-qb-1u1" secondAttribute="trailing" id="Zwt-lz-sL1"/>
+                <constraint firstItem="NAO-qb-1u1" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="fdj-Cv-oBw"/>
+                <constraint firstAttribute="bottom" secondItem="NAO-qb-1u1" secondAttribute="bottom" id="gO4-sW-dnY"/>
+                <constraint firstItem="NAO-qb-1u1" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="wND-UU-Xad"/>
+                <constraint firstAttribute="centerX" secondItem="NAO-qb-1u1" secondAttribute="centerX" id="xPl-Jb-zVG"/>
+            </constraints>
+        </customView>
+    </objects>
+</document>
