@@ -66,7 +66,12 @@ enum {
 
 - (void)sendDidStart
 {
-    
+    if (netService != nil) {
+        NSLog(@"send did start with netService: %@", netService);
+    }
+    else if (host != nil) {
+        NSLog(@"send did start with host: %@, and port: %hu", host, port);
+    }
 }
 
 - (void)updateStatus:(NSString *)statusString
@@ -76,6 +81,7 @@ enum {
 
 - (void)sendDidStopWithStatus:(NSString *)statusString
 {
+    NSLog(@"send did stop with status: %@", statusString);
     [delegate sendDidStopWithStatus:statusString];
 }
 
@@ -195,6 +201,8 @@ enum {
 {
     assert(aStream == self.networkStream);
     #pragma unused(aStream)
+    
+    NSLog(@"sending...");
     
     switch (eventCode) {
         case NSStreamEventOpenCompleted: {

@@ -388,7 +388,7 @@ static void AcceptCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
             assert(addrLen == sizeof(addr));
             //port = ntohs(addr.sin_port);
             port = addr.sin_port;
-            NSLog(@"port we got: %lu", (unsigned long)port);
+            NSLog(@"port we got: %hu", (UInt16)port);
         }
     }
     if (success) {

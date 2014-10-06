@@ -158,7 +158,7 @@
 
 - (NSData *)getArrayOfFilesAsNSData {
     NSArray *array = [self getArrayOfFiles];
-    NSLog(@"files in project: %@", array);
+    //NSLog(@"files in project: %@", array);
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:array];
     
     return data;

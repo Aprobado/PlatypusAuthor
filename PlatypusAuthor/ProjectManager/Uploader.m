@@ -89,7 +89,7 @@
         [self stopTimer];
     }
     
-    timer = [NSTimer timerWithTimeInterval:5.0 target:self selector:@selector(timeout:) userInfo:nil repeats:NO];
+    timer = [NSTimer timerWithTimeInterval:7.0 target:self selector:@selector(timeout:) userInfo:nil repeats:NO];
     NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
     [runLoop addTimer:timer forMode:NSDefaultRunLoopMode];
 }
