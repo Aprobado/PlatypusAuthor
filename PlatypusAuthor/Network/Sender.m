@@ -137,11 +137,6 @@ enum {
     
     // Open a stream to the server, finding the server via Bonjour.  Then configure
     // the stream for async operation.
-    /*
-    if (netService == nil) {
-        // fallback with hardcoded type and name if the sender was not initialized with a netService
-        netService = [[NSNetService alloc] initWithDomain:@"local." type:@"_unknownType._tcp." name:@"A device with no name"];
-    }*/
     
     //assert(netService != nil);
     
@@ -168,7 +163,7 @@ enum {
     }
     
     self.networkStream = output;
-    self.networkStream.delegate = self;
+    [self.networkStream setDelegate:self];
     [self.networkStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     
     [self.networkStream open];
@@ -201,8 +196,6 @@ enum {
 {
     assert(aStream == self.networkStream);
     #pragma unused(aStream)
-    
-    NSLog(@"sending...");
     
     switch (eventCode) {
         case NSStreamEventOpenCompleted: {
@@ -246,6 +239,7 @@ enum {
             }
         } break;
         case NSStreamEventErrorOccurred: {
+            NSLog(@"sender stream error: %@", [aStream streamError]);
             [self stopSendWithStatus:@"Stream open error"];
         } break;
         case NSStreamEventEndEncountered: {

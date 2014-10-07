@@ -167,7 +167,7 @@
         NSLog(@"Sending file: %@", filePathInProject);
         
         //NSString *fileAbsolutePath = [project.htmlFolderPath stringByAppendingPathComponent:path];
-        NSString *fileAbsolutePath = [project path];
+        NSString *fileAbsolutePath = [[project path] stringByAppendingPathComponent:path];
         
         // ID 1 means we're sending a file
         UInt8 blockID = 1;

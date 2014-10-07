@@ -16,7 +16,7 @@
 extern UInt16 const magicNumberReceive;
 
 - (void)startServerWithType:(NSString *)type AndName:(NSString *)name;
-- (void)startServerWithType:(NSString *)type AndName:(NSString *)name OnPort:(NSUInteger)manualPort;
+- (void)startServerWithType:(NSString *)type AndName:(NSString *)name OnPort:(UInt16)manualPort;
 - (void)stopServer:(NSString *)reason;
 - (void)resumePublishingService;
 

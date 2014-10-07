@@ -20,7 +20,7 @@ UInt16 const magicNumberReceive = 28473;
 
 // private properties
 
-@property (nonatomic, assign, readonly ) BOOL               isStarted;
+@property (nonatomic, assign)            BOOL               isStarted;
 @property (nonatomic, assign, readonly ) BOOL               isReceiving;
 @property (nonatomic, assign, readwrite) CFSocketRef        listeningSocket;
 @property (nonatomic, strong, readwrite) NSInputStream *    networkStream;
@@ -106,12 +106,6 @@ UInt16 const magicNumberReceive = 28473;
 #pragma mark * Core transfer code
 
 // This is the code that actually does the networking.
-
-- (BOOL)isStarted
-{
-    // is not right anymore with the possible creation of a manual server
-    return (self.netService != nil);
-}
 
 - (BOOL)isReceiving
 {
@@ -343,23 +337,22 @@ static void AcceptCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
     [self startServerWithType:type AndName:name OnPort:0];
 }
 
-- (void)startServerWithType:(NSString *)type AndName:(NSString *)name OnPort:(NSUInteger)manualPort
+- (void)startServerWithType:(NSString *)type AndName:(NSString *)name OnPort:(UInt16)manualPort
 {
     BOOL                success;
     int                 err;
     int                 fd;
     int                 junk;
     struct sockaddr_in  addr;
-    NSUInteger          port;
+    UInt16              port;
     
     // Create a listening socket and use CFSocket to integrate it into our
     // runloop.  We bind to port 0 if we want the kernel to give us
     // any free port, then use getsockname to find out what port number we
     // actually got.
     
-    port = manualPort;
-    
-    NSLog(@"port requested: %hu", (UInt16)port);
+    // tcp ports have inverted endians
+    port = ntohs(manualPort);   // we invert the endians of the port requested
     
     fd = socket(AF_INET, SOCK_STREAM, 0);
     success = (fd != -1);
@@ -368,7 +361,7 @@ static void AcceptCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
         memset(&addr, 0, sizeof(addr));
         addr.sin_len    = sizeof(addr);
         addr.sin_family = AF_INET;
-        addr.sin_port   = (UInt16)port;
+        addr.sin_port   = port;
         addr.sin_addr.s_addr = INADDR_ANY;
         err = bind(fd, (const struct sockaddr *) &addr, sizeof(addr));
         success = (err == 0);
@@ -386,9 +379,7 @@ static void AcceptCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
         
         if (success) {
             assert(addrLen == sizeof(addr));
-            //port = ntohs(addr.sin_port);
-            port = addr.sin_port;
-            NSLog(@"port we got: %hu", (UInt16)port);
+            port = ntohs(addr.sin_port);    // we revert the available port to unix endian
         }
     }
     if (success) {
@@ -441,6 +432,7 @@ static void AcceptCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
     
     if ( success ) {
         assert(port != 0);
+        self.isStarted = YES;
         [self serverDidStartOnPort:port];
     } else {
         [self stopServer:@"Start failed"];
@@ -465,6 +457,8 @@ static void AcceptCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
         CFRelease(self->_listeningSocket);
         self->_listeningSocket = NULL;
     }
+    
+    self.isStarted = NO;
     [self serverDidStopWithReason:reason];
 }
 

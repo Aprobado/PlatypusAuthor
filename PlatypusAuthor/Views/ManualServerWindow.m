@@ -10,7 +10,7 @@
 #import "../Network/ReceiveServer.h"
 #import "../Network/NetworkUtilities.h"
 
-NSUInteger const defaultPort = 40905;
+UInt16 const defaultPort = 40905;
 
 @interface ManualServerWindow ()
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>989BFD32-4954-45D4-BA38-B0ECF31DF214</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PlatypusAuthor</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BCC081C68610A03C25502F113128E79C9E72DFD8</key>
+		<string>https://github.com/Aprobado/PlatypusAuthor.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PlatypusAuthor.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BCC081C68610A03C25502F113128E79C9E72DFD8</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Aprobado/PlatypusAuthor.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BCC081C68610A03C25502F113128E79C9E72DFD8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BCC081C68610A03C25502F113128E79C9E72DFD8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PlatypusAuthor</string>
+		</dict>
+	</array>
+</dict>
+</plist>
