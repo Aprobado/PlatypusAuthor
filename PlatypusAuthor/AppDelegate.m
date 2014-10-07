@@ -96,7 +96,7 @@
     // representedObject is the full template path
     NSLog(@"create new project with project: %@", [item representedObject]);
     
-    NSArray *paths = selectNewProjectFolder();
+    NSArray *paths = [self selectNewProjectFolder];
     if(paths)
     {
         NSURL *path = [paths objectAtIndex:0];
@@ -123,7 +123,7 @@
     }
 }
 
-static NSArray *selectNewProjectFolder()
+- (NSArray *)selectNewProjectFolder
 {
     NSOpenPanel * panel = [NSOpenPanel openPanel];
     [panel setAllowsMultipleSelection:NO];
@@ -152,18 +152,27 @@ static NSArray *selectNewProjectFolder()
 }
 
 - (IBAction)openProject:(id)sender {
-    // open the project folder
-    NSArray * paths = selectProjectFolder();
-    if(paths)
-    {
-        NSURL *path = [paths objectAtIndex:0];
-        ProjectWindowController *projectAlreadyOpened = [self isProjectAtPathAlreadyOpen:path];
-        if (projectAlreadyOpened != nil) {
-            // make it key window
-            [[projectAlreadyOpened window] makeKeyAndOrderFront:[projectAlreadyOpened window]];
-        } else {
-            [self openProjectAtPath:path];
+    NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+    [openPanel setAllowsMultipleSelection:NO];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setFloatingPanel:YES];
+    
+    [openPanel beginWithCompletionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL *url = [[[openPanel URLs] objectAtIndex:0] copy];
+            [self tryOpenProjectAtPath:url];
         }
+    }];
+}
+
+- (void)tryOpenProjectAtPath:(NSURL *)path {
+    ProjectWindowController *projectAlreadyOpened = [self isProjectAtPathAlreadyOpen:path];
+    if (projectAlreadyOpened != nil) {
+        // make it key window
+        [[projectAlreadyOpened window] makeKeyAndOrderFront:[projectAlreadyOpened window]];
+    } else {
+        [self openProjectAtPath:path];
     }
 }
 
@@ -265,21 +274,6 @@ static NSArray *selectNewProjectFolder()
     }
 }
 
-static NSArray *selectProjectFolder()
-{
-    NSOpenPanel * panel = [NSOpenPanel openPanel];
-    [panel setAllowsMultipleSelection:NO];
-    [panel setCanChooseDirectories:YES];
-    [panel setCanChooseFiles:NO];
-    [panel setFloatingPanel:YES];
-    NSInteger result = [panel runModal];
-    if(result == NSOKButton)
-    {
-        return [panel URLs];
-    }
-    return nil;
-}
-
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
@@ -295,7 +289,7 @@ static NSArray *selectProjectFolder()
 - (void)closingWindow:(ProjectWindowController *)projectWindow {
     [authorService removeUploadObserver:projectWindow];
     [projectsWindow removeObject:projectWindow];
-    NSLog(@"Window removed: %@", projectsWindow);
+    NSLog(@"Window list updated: %@", projectsWindow);
 }
 
 - (void)uploadToTargets:(Project *)project {

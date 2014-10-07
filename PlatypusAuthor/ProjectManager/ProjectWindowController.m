@@ -263,7 +263,7 @@
     
     if ([outlineView isExpandable:item]) {
         if ([outlineView isItemExpanded:item]) {
-            [outlineView collapseItem:item];
+            //[outlineView collapseItem:item];
         } else {
             [outlineView expandItem:item];
             /*
@@ -273,7 +273,7 @@
             }
             */
         }
-        [outlineView deselectRow:[outlineView rowForItem:item]];
+        //[outlineView deselectRow:[outlineView rowForItem:item]];
         //[outlineView deselectAll:nil];
         return;
     }
